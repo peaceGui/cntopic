@@ -208,7 +208,7 @@ topic.train_lda_model(n_topics=10) #指定n_topics，构建LDA话题模型
 |2|预测document对应的话题|topic.get_document_topics(document)||
 |3|显示每种话题与对应的特征词之间关系|topic.show_topics()||
 |4|数据中不同话题分布情况|topic.topic_distribution(raw_documents)|raw_documents是列表或series，如本教程中的df['content']|
-|5|可视化LDA话题模型|topic.visualize_lda()|可视化结果在output中查找vis.html文件，浏览器打开即可||
+|5|可视化LDA话题模型（**功能不稳定**）|topic.visualize_lda()|可视化结果在output中查找vis.html文件，浏览器打开即可|
 
 ## 4.1 准备document
 假设有一个文档 ``'游戏体育真有意思'`` 分词处理得到document
@@ -332,19 +332,29 @@ topic.topic_distribution(raw_documents=df['content'])
 
 综上，目前模型还算可以，表现还能接受。
 
-## 4.5 可视化
+## 4.5 可视化（功能不稳定）
+
 现在只有10个话题， 我们用肉眼看还能接受，但是当话题数太多的时，还是借助可视化工具帮助我们科学评判训练结果。
 
-这就用到topic.visualize_lda()，运行结束后在
-
-``代码所在的文件夹内output中找vis.html文件，右键浏览器打开``
+这就用到topic.visualize_lda()，
 
 
 ```python
 topic.visualize_lda()
 ```
 
+运行结束后在
+
+``代码所在的文件夹output文件夹中找vis.html文件，右键浏览器打开``。
+
+
+
+**可视化功能不稳定，存在vis.html打不开的情况；希望海涵**
+
+![](img/vis.gif)
+
 图中有左右两大区域
+
 - 左侧  话题分布情况，圆形越大话题越多，圆形四散在四个象限
 - 右侧  某话题对应的特征词，从上到下权重越来越低
 
@@ -352,6 +362,8 @@ topic.visualize_lda()
 需要注意的是左侧
 - 尽量圆形均匀分布在四个象限比较好，如果圆形全部集中到有限的区域，模型训练不好
 - 圆形与圆形交集较少比较好，如果交集太多，说明n_topics设置的太大，应该设置的再小一些
+
+
 
 # 五、存储与导入lda模型
 lda话题模型训练特别慢，如果不保存训练好的模型，实际上是在浪费我们的生命和电脑计算力。
