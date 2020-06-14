@@ -1,0 +1,1 @@
+from cntopic.chinesetopic import Topic
